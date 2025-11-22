@@ -1,0 +1,239 @@
+{
+     "header": {
+                       "type": "section",
+                   "nullable": false,
+                 "properties": {
+                                        "logo": {
+                                                        "type": "object",
+                                                    "nullable": false,
+                                                  "properties": {
+                                                                  "url": { "type": "string", "nullable": true, "format": "uri", "minLength": 1, "maxLength": 2048 },
+                                                                  "alt": { "type": "string", "nullable": true, "minLength": 1, "maxLength": 50 }
+                                                                }
+                                                },
+
+                                 "navigations": {
+                                                      "type": "array",
+                                                  "nullable": true,
+                                                  "minItems": 0, 
+                                                  "maxItems": 5,
+                                                     "items": {
+                                                                      "type": "object",
+                                                                  "nullable": false,
+                                                                "properties": {
+                                                                                "title": { "type": "string", "nullable": false, "minLength": 2, "maxLength": 25 },
+                                                                                  "url": { "type": "string", "nullable": true, "format": "uri", "minLength": 1, "maxLength": 2048 }
+                                                                              }
+                                                              }
+                                                },
+                                                
+                                   "searchbar": {
+                                                        "type": "object",
+                                                    "nullable": true,
+                                                  "properties": {
+                                                                     "enabled": { "type": "boolean", "nullable": false, "default": false },
+                                                                    "searchOn": {
+                                                                                      "type": "array", 
+                                                                                  "minItems": 0,
+                                                                                  "maxItems": 3,
+                                                                                  "nullable": true,
+                                                                                   "default": "all",
+                                                                                     "items": { "type": "string", "enum": ["category", "popular", "mostSale", "all"] }
+                                                                                },
+                                                                  "preference": {
+                                                                                      "type": "string",
+                                                                                  "nullable": true,
+                                                                                      "enum": ["category", "popular", "mostSale", "none"],
+                                                                                   "default": "none"
+                                                                                }
+                                                                }
+                                                },
+
+                                    "commerce": {
+                                                        "type": "object",
+                                                    "nullable": true,
+                                                    "properties": {
+                                                                          "cart": {
+                                                                                        "type": "object",
+                                                                                    "nullable": true,
+                                                                                  "properties": {
+                                                                                                    "enabled": { "type": "boolean", "nullable": false, "default": true },
+                                                                                                  "behaviour": {
+                                                                                                                     "type": "string",
+                                                                                                                 "nullable": true,
+                                                                                                                     "enum": ["mini-cart", "overlay", "redirect"],
+                                                                                                                  "default": "mini-cart"
+                                                                                                               }
+                                                                                                }
+                                                                                  },
+                                                                     "favourite": {
+                                                                                          "type": "object",
+                                                                                      "nullable": true,
+                                                                                    "properties": {
+                                                                                                      "enabled": { "type": "boolean", "nullable": false, "default": true },
+                                                                                                    "behaviour": {
+                                                                                                                       "type": "string",
+                                                                                                                   "nullable": true,
+                                                                                                                       "enum": ["mini-panel", "overlay", "redirect"],
+                                                                                                                    "default": "mini-panel"
+                                                                                                                 }
+                                                                                                  }
+                                                                                }
+
+                                                                }
+                                                }
+                            }
+               },
+       "hero": {
+                       "type": "section",
+                   "nullable": true,
+                 "properties": {
+                                     "enabled": { "type": "boolean", "nullable": false, "default": true },
+                                      "layout": { "type": "string", "nullable": true, 
+                                                  "enum": ["simple", "split", "image-left", "image-right", "full-width"], "default": "simple" },
+                                   "alignment": { "type": "string", "nullable": true,
+                                                  "enum": ["left", "center", "right"], "default": "left" },
+                                       "title": { "type": "string", "nullable": true, "minLength": 4, "maxLength": 60  },
+                                    "subtitle": { "type": "string", "nullable": true, "minLength": 10, "maxLength": 160  },
+                                 "description": { "type": "string", "nullable": true, "minLength": 100, "maxLength": 300  },
+                                     "buttons": { 
+                                                       "type": "array", 
+                                                   "nullable": true, 
+                                                   "minItems": 0,
+                                                   "maxItems": 3,
+                                                      "items": {       
+                                                                       "type": "object",
+                                                                   "nullable": false,
+                                                                 "properties": {
+                                                                                   "label": { "type": "string", "nullable": false, "minLength": 3, "maxLength": 25  },
+                                                                                     "url": { "type": "string", "nullable": false, "format": "uri", "minLength": 1, "maxLength": 2048 },
+                                                                                 "variant": { "type": "string", "nullable": true,
+                                                                                              "enum": ["primary", "secondary", "outline", "link"], "default": "primary" }
+                                                                               }
+                                                              }
+                                                },
+                                  "background": {       
+                                                        "type": "object", 
+                                                    "nullable": true,
+                                                  "properties": {
+                                                                    "type": { "type": "string", "nullable": true,
+                                                                              "enum": ["image", "video", "color"] },
+                                                                   "image": {       "type": "object", "nullable": true,
+                                                                              "properties": { 
+                                                                                            "url": { "type": "string", "nullable": true, "format": "uri", "minLength": 1, "maxLength": 2048 },
+                                                                                            "alt": { "type": "string", "nullable": true,  "minLength": 1, "maxLength": 50 } }
+                                                                            },
+                                                                   "video": { 
+                                                                                    "type": "object", "nullable": true, 
+                                                                              "properties": {
+                                                                                                  "url": { "type": "string", "nullable": true, "format": "uri", "minLength": 1, "maxLength": 2048},
+                                                                                             "autoPlay": { "type": "boolean", "nullable": true, "default": true },
+                                                                                                 "loop": { "type": "boolean", "nullable": true, "default": true },
+                                                                                                "muted": { "type": "boolean", "nullable": true, "default": true }
+                                                                                           }
+                                                                            },
+                                                                   "color": {      "type": "string", "nullable": true, 
+                                                                                "pattern": "^(#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|rgb\\(\\s*(?:[01]?\\d?\\d|2[0-4]\\d|25[0-5])\\s*,\\s*(?:[01]?\\d?\\d|2[0-4]\\d|25[0-5])\\s*,\\s*(?:[01]?\\d?\\d|2[0-4]\\d|25[0-5])\\s*\\)|rgba\\(\\s*(?:[01]?\\d?\\d|2[0-4]\\d|25[0-5])\\s*,\\s*(?:[01]?\\d?\\d|2[0-4]\\d|25[0-5])\\s*,\\s*(?:[01]?\\d?\\d|2[0-4]\\d|25[0-5])\\s*,\\s*(0|0?\\.\\d+|1(\\.0)?)\\s*\\)|hsl\\(\\s*(?:[0-9]|[1-9]\\d|[12]\\d\\d|3[0-5]\\d)\\s*,\\s*(?:[0-9]|[1-9]\\d|100)%\\s*,\\s*(?:[0-9]|[1-9]\\d|100)%\\s*\\)|hsla\\(\\s*(?:[0-9]|[1-9]\\d|[12]\\d\\d|3[0-5]\\d)\\s*,\\s*(?:[0-9]|[1-9]\\d|100)%\\s*,\\s*(?:[0-9]|[1-9]\\d|100)%\\s*,\\s*(0|0?\\.\\d+|1(\\.0)?)\\s*\\)|[a-zA-Z]+)$", 
+                                                                              "minLength": 3, "maxLength": 25  },
+                                                                 "overlay": {
+                                                                                    "type": "object", "nullable": true,
+                                                                              "properties": {
+                                                                                              "enabled": { "type": "boolean", "nullable": true, "default": false },
+                                                                                              "opacity": {
+                                                                                                               "type": "number",
+                                                                                                           "nullable": true,
+                                                                                                            "default": 0.4
+                                                                                                        },
+                                                                                                "color": { "type": "string", "minLength": 3, "maxLength": 30, "nullable": true, "default": "#000000" }
+                                                                                            }
+                                                                          }
+                                                                }
+                                               }
+                               }
+               },
+     "footer": {
+                       "type": "section",
+                   "nullable": false,
+                 "properties": {
+                                 "brand": {
+                                                  "type": "object",
+                                              "nullable": false,
+                                            "properties": {
+                                                                   "logo": {
+                                                                                   "type": "object",
+                                                                               "nullable": false,
+                                                                             "properties": {
+                                                                                                "url": { "type": "string", "nullable": true, "format": "uri", "minLength": 1, "maxLength": 2048 },
+                                                                                                "alt": { "type": "string", "nullable": true, "minLength": 1, "maxLength": 50 }
+                                                                                            }
+                                                                            },
+                                                            "description": { "type": "string", "nullable": true, "minLength": 20, "maxLength": 300  },
+                                                            "socialLinks": {
+                                                                                 "type": "array",
+                                                                             "nullable": true,
+                                                                             "minItems": 0,
+                                                                             "maxItems": 5,
+                                                                                "items": {
+                                                                                                 "type": "object",
+                                                                                             "nullable": false,
+                                                                                           "properties": {
+                                                                                                           "platform": { "type": "string", "nullable": false, "enum": ["facebook", "whatsapp", "linkedin", "instagram", "youtube", "pinterest", "tiktok", "twitter", "discord", "telegram" ]  },
+                                                                                                                "url": { "type": "string", "nullable": false, "format": "uri", "minLength": 1, "maxLength": 2048 }
+                                                                                                         }
+                                                                                         }
+                                                                            }
+                                                          }
+                                          },
+
+                                 "columns": {
+                                                  "type": "array",
+                                              "nullable": false,
+                                              "minItems": 1, 
+                                              "maxItems": 6,
+                                                 "items": {
+                                                                  "type": "object",
+                                                              "nullable": false,
+                                                            "properties": {
+                                                                            "title": { "type": "string", "nullable": false, "minLength": 3, "maxLength": 20  },
+                                                                            "links": {
+                                                                                           "type": "array",
+                                                                                       "nullable": true,
+                                                                                       "minItems": 0,
+                                                                                       "maxItems": 20,
+                                                                                          "items": {
+                                                                                                           "type": "object",
+                                                                                                       "nullable": false,
+                                                                                                     "properties": {
+                                                                                                                     "label": { "type": "string", "minLength": 3, "maxLength": 50 },
+                                                                                                                       "url": { "type": "string", "format": "uri", "minLength": 1, "maxLength": 2048 }
+                                                                                                                   }
+                                                                                                   }
+                                                                                     }
+                                                                        }
+                                                         }
+                                           },
+
+                                  "legal": {
+                                                   "type": "object",
+                                               "nullable": true,
+                                             "properties": {
+                                                              "copyright": { "type": "string", "nullable": false, "minLength": 3, "maxLength": 120 },
+                                                                  "links": {
+                                                                                 "type": "array",
+                                                                             "nullable": true,
+                                                                             "minItems": 0,
+                                                                             "maxItems": 4,
+                                                                                "items": {
+                                                                                                 "type": "object",
+                                                                                             "nullable": false,
+                                                                                           "properties": {
+                                                                                                           "label": { "type": "string", "nullable": true, "minLength": 0,     "maxLength": 50   },
+                                                                                                             "url": { "type": "string", "nullable": false,    "format": "uri", "minLength": 1, "maxLength": 2048 }
+                                                                                                         }
+                                                                                         }
+                                                                           }
+                                                        }
+                                           }
+                               }
+               }
+}
